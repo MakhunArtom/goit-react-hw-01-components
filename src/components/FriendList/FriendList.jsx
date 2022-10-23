@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import css from './Frendlist.module.css';
+import { isOnlin } from './FrendList.isOnLine';
 
 export const FriendList = ({ friends }) => {
   return (
@@ -7,7 +8,10 @@ export const FriendList = ({ friends }) => {
       {friends.map(({ avatar, name, isOnline, id }) => {
         return (
           <li key={id} className={css.item}>
-            <span className={isOnline ? css.isOnline : css.isOfline}></span>
+            <span
+              className={css.status}
+              style={{ background: isOnlin(isOnline) }}
+            ></span>
             <img
               className={css.avatar}
               src={avatar}
@@ -25,3 +29,5 @@ export const FriendList = ({ friends }) => {
 FriendList.propTypes = {
   friends: PropTypes.arrayOf(PropTypes.object),
 };
+
+// isOnline ? css.isOnline : css.isOfline;
